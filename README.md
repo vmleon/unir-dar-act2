@@ -6,9 +6,5 @@ Este es un tutorial interactivo de Angular donde la propia aplicación enseña c
 
 La aplicación en sí es un gestor de bookmarks funcional. Puedes añadir, filtrar y eliminar marcadores mientras aprendes cómo funciona cada pieza.
 
-- Tutorial Online
+- [Tutorial Online](https://vmleon.github.io/unir-dar-act2/tutorial/dist/tutorial/browser/index.html)
 - [Repositorio](https://github.com/vmleon/unir-dar-act2)
-
-```
-/tutorial/dist/tutorial/browser/index.html
-```
