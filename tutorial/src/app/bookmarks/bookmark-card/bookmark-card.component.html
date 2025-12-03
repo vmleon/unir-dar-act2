@@ -1,0 +1,24 @@
+<article class="card learnable" (click)="revealLesson($event)">
+  <div class="card-body">
+    <div class="card-header">
+      <h3 class="card-title learnable" (click)="revealDataBinding($event)">{{ bookmark().title }}</h3>
+      <button class="delete-btn" (click)="onDelete($event)" title="Eliminar bookmark">🗑️ Eliminar</button>
+    </div>
+
+    @if (bookmark().description) {
+      <p class="card-description">{{ bookmark().description }}</p>
+    }
+
+    <a class="card-url" [href]="bookmark().url" target="_blank" (click)="$event.stopPropagation()">
+      {{ bookmark().url }}
+    </a>
+
+    @if (bookmark().tags?.length) {
+      <div class="card-tags learnable" (click)="revealCommunication($event)">
+        @for (tag of bookmark().tags; track tag) {
+          <span class="tag">{{ tag }}</span>
+        }
+      </div>
+    }
+  </div>
+</article>

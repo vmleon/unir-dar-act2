@@ -1,0 +1,75 @@
+<!-- Progress bar - always visible -->
+<div class="progress-section">
+  <div class="progress-header">
+    <span class="progress-label">Progreso</span>
+    <span class="progress-count">{{ viewedCount() }}/{{ totalLessons }}</span>
+  </div>
+  <div class="progress-bar">
+    <div class="progress-fill" [style.width.%]="progressPercent()"></div>
+  </div>
+  @if (progressPercent() === 100) {
+  <span class="progress-complete">🎉 ¡Todas las lecciones completadas!</span>
+  }
+</div>
+
+@if (activeLesson(); as lesson) {
+<div class="lesson">
+  <header class="lesson-header">
+    <span class="concept-badge">{{ lesson.concept }}</span>
+    <h2>{{ lesson.title }}</h2>
+  </header>
+
+  <section class="lesson-section">
+    <h3>📖 Explicación</h3>
+    <p class="explanation">{{ lesson.explanation }}</p>
+  </section>
+
+  <section class="lesson-section">
+    <h3>💻 Código</h3>
+    <app-code-highlight [code]="lesson.codeSnippet" />
+  </section>
+
+  <section class="lesson-section">
+    <h3>🎯 Puntos Clave</h3>
+    <ul class="takeaways">
+      @for (point of lesson.keyTakeaways; track point) {
+      <li>{{ point }}</li>
+      }
+    </ul>
+  </section>
+</div>
+} @else {
+<div class="welcome">
+  <h2>👋 ¡Bienvenido!</h2>
+  <p class="intro">
+    Aprende los <strong>fundamentos de Angular</strong> explorando esta aplicación funcional de
+    Bookmarks. Haz clic en cualquier componente halo para ver cómo funciona.
+  </p>
+
+  <div class="how-it-works">
+    <h3>🎯 Cómo Funciona</h3>
+    <ol>
+      <li>Usa la aplicación de bookmarks a la izquierda</li>
+      <li>Haz clic en los componentes destacados para aprender</li>
+      <li>¡Completa las 7 lecciones!</li>
+    </ol>
+  </div>
+
+  <h3>🗺️ Learning Path</h3>
+  <ol class="learning-path">
+    @for (lesson of allLessons; track lesson.id) {
+    <li>
+      <button (click)="selectLesson(lesson.id)" [class.viewed]="isViewed(lesson.id)">
+        <span class="lesson-status">
+          @if (isViewed(lesson.id)) { ✓ } @else { {{ $index + 1 }} }
+        </span>
+        <span class="lesson-info">
+          <span class="lesson-title">{{ lesson.title }}</span>
+          <span class="lesson-concept">{{ lesson.concept }}</span>
+        </span>
+      </button>
+    </li>
+    }
+  </ol>
+</div>
+}

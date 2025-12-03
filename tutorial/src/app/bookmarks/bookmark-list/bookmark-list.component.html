@@ -1,0 +1,37 @@
+<div class="list-header">
+  <div class="header-left">
+    <h2 class="learnable" (click)="revealServicesDI()">Mis Bookmarks</h2>
+    <span class="count">{{ count() }} de {{ totalCount() }} bookmarks</span>
+  </div>
+  <button class="add-btn" (click)="toggleAddForm()">
+    @if (showAddForm()) { Cancelar } @else { + Añadir Bookmark }
+  </button>
+</div>
+
+@if (showAddForm()) {
+  <app-bookmark-form (saved)="onBookmarkAdded()" />
+}
+
+<div class="filter-section learnable" (click)="revealSignals()">
+  <input
+    type="text"
+    placeholder="🔍 Filtrar bookmarks..."
+    [ngModel]="filterText()"
+    (ngModelChange)="onFilterChange($event)"
+    class="filter-input"
+  />
+</div>
+
+<div class="bookmark-grid learnable" (click)="revealControlFlow()">
+  @for (bookmark of bookmarks(); track bookmark.id) {
+    <app-bookmark-card [bookmark]="bookmark" (deleted)="deleteBookmark($event)" />
+  } @empty {
+    <p class="empty-state">
+      @if (filterText()) {
+        No hay bookmarks que coincidan con "{{ filterText() }}"
+      } @else {
+        No hay bookmarks todavía. ¡Añade el primero!
+      }
+    </p>
+  }
+</div>

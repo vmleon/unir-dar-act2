@@ -1,0 +1,72 @@
+/* Global styles for the Self-Revealing Bookmarks Tutorial */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --primary-color: #6366f1;
+  --primary-hover: #4f46e5;
+  --text-color: #1f2937;
+  --text-muted: #6b7280;
+  --bg-color: #ffffff;
+  --bg-secondary: #f9fafb;
+  --border-color: #e5e7eb;
+  --panel-bg: #f8fafc;
+  --learnable-glow: rgba(99, 102, 241, 0.3);
+  --success-color: #10b981;
+  --danger-color: #ef4444;
+}
+
+html, body {
+  height: 100%;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--text-color);
+  background-color: var(--bg-color);
+}
+
+a {
+  color: var(--primary-color);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+button {
+  cursor: pointer;
+  font-family: inherit;
+  font-size: inherit;
+}
+
+/* Learnable component indicator */
+.learnable {
+  cursor: pointer;
+  transition: box-shadow 0.2s ease, outline 0.2s ease;
+  position: relative;
+}
+
+.learnable:hover {
+  box-shadow: 0 0 0 3px var(--learnable-glow);
+  outline: 2px solid var(--primary-color);
+  outline-offset: 2px;
+}
+
+.learnable::after {
+  content: '📘';
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  font-size: 14px;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.learnable:hover::after {
+  opacity: 1;
+}
